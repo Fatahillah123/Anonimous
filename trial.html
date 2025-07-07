@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Semangat Bekerja</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #4facfe, #00f2fe);
+      color: white;
+      text-align: center;
+      padding-top: 20%;
+      padding-bottom: 20%;
+    }
+
+    .start-btn {
+      padding: 15px 30px;
+      font-size: 2.2em;
+      background-color: white;
+      color: #4facfe;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 5px 7px rgba(0,0,0,0.2);
+      transition: transform 0.2s;
+    }
+
+    .start-btn:hover {
+      transform: scale(1.05);
+    }
+
+    #greeting, #work-message {
+      display: none;
+      animation: fadeIn 2s ease forwards;
+      margin-top: 20px;
+    }
+
+    #greeting {
+  font-size: 3em;
+  line-height: 1.1;
+}
+
+#work-message {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 10px;
+  line-height: 1.1;
+}
+
+    .quote {
+      font-style: italic;
+      margin-top: 25px;
+      display: none;
+      animation: fadeIn 2s ease forwards;
+      font-size: 1.5em;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <button class="start-btn" onclick="startDay()"><strong>Pencet SAYA ! 🎵</strong></button>
+
+  <h1 id="greeting"></h1>
+  <div id="work-message"><h2>Selamat Bekerja Mas Hasan! 👨‍🔬<h2></div>
+  <div class="quote" id="quote"></div>
+
+  <audio id="bg-music" loop>
+    <source src="Love.mp3" type="audio/mpeg">
+    Browser Anda tidak mendukung pemutar audio.
+  </audio>
+
+  <script>
+    const quotes = [
+      "Semangat bekerja Mas Hasan 🫰! Usaha hari ini adalah hasil besok. Semoga lelahmu digantikan menjadi keberkahan yaa...💪",
+      "Jangan pernah menyerah ya 🫰, setiap kerja keras pasti membuahkan hasil. Semoga lelahmu digantikan menjadi keberkahan yaa...💪",
+      "Kerja dengan hati akan membuahkan hasil yang luar biasa. Semoga lelahmu digantikan menjadi keberkahan yaa...💪"
+    ];
+
+    function startDay() {
+      const hour = new Date().getHours();
+      let greetingText = "";
+
+      if (hour < 12) {
+        greetingText = "Good Morning!";
+      } else if (hour < 17) {
+        greetingText = "Good Evening!";
+      } else {
+        greetingText = "Good Night!";
+      }
+
+      document.getElementById("greeting").textContent = greetingText;
+      document.getElementById("quote").textContent = quotes[Math.floor(Math.random() * quotes.length)];
+
+      // Tampilkan semuanya
+      document.getElementById("bg-music").play().catch(err => console.log("Gagal play musik:", err));
+      document.getElementById("greeting").style.display = "block";
+      document.getElementById("work-message").style.display = "block";
+      document.getElementById("quote").style.display = "block";
+
+      document.querySelector(".start-btn").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>
